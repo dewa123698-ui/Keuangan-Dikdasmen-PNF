@@ -1,23 +1,29 @@
-# Laporan Keuangan Majelis Dikdasmen dan PNF Kota Probolinggo
+# Keuangan Dikdasmen dan PNF Kota Probolinggo
 
-Proyek Android native Java, offline, minSdk 19 (Android 4.4 KitKat).
+Aplikasi Android native Java, penyimpanan lokal SQLite, tanpa perlu koneksi internet. `minSdk 19` (Android 4.4).
 
-## Fitur versi awal
+## Fitur
 - Dashboard total pemasukan, pengeluaran, dan saldo.
-- Input transaksi pemasukan/pengeluaran.
-- Bidang kebutuhan kantor atau pembangunan bangunan.
-- Edit dan hapus transaksi.
-- Lampiran foto nota/kuitansi dan foto barang dari galeri.
-- Laporan total dan rekap per bidang.
-- Database SQLite lokal.
+- Input, edit, dan hapus transaksi.
+- Bidang Kebutuhan Kantor dan Pembangunan Bangunan.
+- Kategori transaksi dan sumber dana/penerima.
+- Lampiran foto nota/kuitansi dan foto barang/pekerjaan.
+- Rekap total dan rekap per bidang.
+- Ekspor rincian transaksi ke CSV yang dapat dibuka dengan Microsoft Excel atau aplikasi spreadsheet.
+- Ekspor laporan PDF.
+- Backup database SQLite dan seluruh foto bukti ke satu file ZIP.
+- Restore dari file backup ZIP. Restore mengganti data lokal yang sedang ada; lakukan backup terlebih dahulu.
 
-## Cara menghasilkan APK melalui GitHub (bisa dari HP)
+## Struktur backup
+File ZIP berisi `keuangan_dikdasmen.db`, folder `bukti/`, dan `backup_info.txt`. Simpan file backup di tempat aman. Foto bukti disalin bersama database sehingga path foto di transaksi tetap cocok setelah restore pada aplikasi ini.
+
+## Build APK dari GitHub
 1. Buat repository GitHub baru.
-2. Unggah seluruh isi folder proyek ini ke repository (bukan folder ZIP sebagai satu file).
-3. Buka tab **Actions** lalu pilih workflow **Build Android APK**.
-4. Tekan **Run workflow**. Tunggu proses selesai.
-5. Buka hasil workflow dan unduh artifact **Keuangan-DikdasmenPNF-APK**.
-6. Ekstrak artifact ZIP, lalu pasang `app-debug.apk` di HP. Izinkan instalasi aplikasi dari sumber yang digunakan jika Android meminta.
+2. Unggah **isi** folder `KeuanganDikdasmenPNF` ke repository (termasuk folder `.github`).
+3. Buka tab **Actions** dan pilih workflow **Build Android APK**.
+4. Jalankan workflow dengan **Run workflow** atau push ke branch `main`/`master`.
+5. Setelah berhasil, unduh artifact `Keuangan-DikdasmenPNF-APK`.
+6. Ekstrak artifact dan pasang `app-debug.apk` di HP.
 
-## Catatan penting
-Ini adalah source project dan workflow pembangun APK, bukan APK yang sudah dikompilasi atau diuji. Lingkungan pembuatan saat ini tidak memiliki Android SDK/Gradle sehingga APK belum dapat dinyatakan siap instal. Uji pada perangkat Android 4.4 nyata tetap diperlukan.
+## Catatan pengujian
+Source ini telah diperbarui, tetapi APK belum dikompilasi atau diuji pada perangkat Android dalam lingkungan ini. Jalankan workflow GitHub Actions terlebih dahulu. Sebelum memakai data penting, uji input/edit transaksi, ekspor CSV/PDF, backup, lalu restore pada data percobaan. Jangan menghapus instalasi lama sebelum data lama diamankan.
